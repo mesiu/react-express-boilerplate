@@ -38,10 +38,19 @@ config.module.rules.push({
 
 /* Webpack HMR */
 if (__DEV__) {
-  config.entry.main.push('webpack-hot-middleware/client?reload=true');
+  const hmr = [
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client?reload=true',
+  ];
 
-  config.plugins.push(new webpack.HotModuleReplacementPlugin());
-  config.plugins.push(new webpack.NoEmitOnErrorsPlugin());
+  config.entry.main = hmr.concat(config.entry.main);
+
+  const hotMiddlewarePlugins = [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ];
+
+  config.plugins = config.plugins.concat(hotMiddlewarePlugins);
 }
 
 module.exports = config;

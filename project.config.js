@@ -7,5 +7,5 @@ module.exports = {
   outDir: 'dist',
   main: 'client',
   port: PORT,
-  publicPath: NODE_ENV === 'develop' ? `http://localhost:${PORT}` : '/',
+  publicPath: '/',
 };
