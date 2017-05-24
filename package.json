@@ -1,0 +1,40 @@
+{
+  "name": "react-express-boilerplate",
+  "description": "Boilerplate for a React project running with an Express server",
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint . --ignore-path .gitignore",
+    "serve": "node ./server/server",
+    "start": "npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesiu/react-express-boilerplate.git"
+  },
+  "author": "Melissa Siu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mesiu/react-express-boilerplate/issues"
+  },
+  "homepage": "https://github.com/mesiu/react-express-boilerplate#readme",
+  "dependencies": {
+    "compression": "1.6.2",
+    "express": "4.15.3",
+    "react": "15.5.4",
+    "react-dom": "15.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-preset-env": "1.5.0",
+    "babel-preset-react": "6.24.1",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.1",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "5.0.3",
+    "eslint-plugin-react": "7.0.1",
+    "webpack": "2.5.1",
+    "webpack-dev-middleware": "1.10.2",
+    "webpack-hot-middleware": "2.18.0"
+  }
+}
