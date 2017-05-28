@@ -7,6 +7,7 @@ const __DEV__ = project.env === 'develop';
 const __PROD__ = project.env === 'production';
 
 const config = {
+  devtool: __DEV__ ? 'eval-source-map' : 'cheap-module-source-map',
   entry: {
     main: [
       path.resolve(project.srcDir, project.main),
