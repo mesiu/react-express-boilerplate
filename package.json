@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack",
     "lint": "eslint . --ignore-path .gitignore",
-    "serve": "node ./server/server",
+    "serve": "node ./server",
     "start": "npm run serve",
     "test": "NODE_ENV=test jest",
     "test:watch": "npm test -- --watch",
@@ -37,6 +37,7 @@
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-preset-env": "1.5.0",
     "babel-preset-react": "6.24.1",
+    "babel-register": "6.24.1",
     "css-loader": "0.28.3",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",

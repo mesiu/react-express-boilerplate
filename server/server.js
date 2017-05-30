@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 
-const compression = require('compression');
-const express = require('express');
-const path = require('path');
+import compression from 'compression';
+import express from 'express';
+import path from 'path';
 
-const webpackMiddleware = require('./middleware/webpack');
+import webpackMiddleware from './middleware/webpack';
 
-const project = require('../project.config');
+import project from '../project.config';
 
 const app = express();
 const port = project.port;
