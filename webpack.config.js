@@ -56,7 +56,6 @@ config.module.rules.push({
           importLoaders: 1,
           localIdentName: '[name]__[local]--[hash:base64:5]',
           modules: true,
-          minimize: __PROD__,
         },
       },
       {
@@ -83,6 +82,23 @@ if (__DEV__) {
   ];
 
   config.plugins = config.plugins.concat(hotMiddlewarePlugins);
+}
+
+/* Production Build */
+if (__PROD__) {
+  config.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: !!config.devtool,
+      compress: {
+        drop_console: true,
+        warnings: false,
+      },
+    })
+  );
 }
 
 module.exports = config;
