@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const project = require('./project.config');
 
@@ -15,7 +16,7 @@ const config = {
     ],
   },
   output: {
-    filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
+    filename: __DEV__ ? '[name].js' : '[name].[chunkhash:6].js',
     path: path.resolve(__dirname, project.outDir),
     publicPath: project.publicPath,
   },
@@ -41,7 +42,7 @@ config.module.rules.push({
 /* CSS */
 const extractTextPlugin = new ExtractTextPlugin({
   disable: __DEV__,
-  filename: 'styles.[contenthash].css',
+  filename: 'styles.[contenthash:6].css',
   allChunks: true,
 });
 
@@ -66,6 +67,13 @@ config.module.rules.push({
 });
 
 config.plugins.push(extractTextPlugin);
+
+/* HTML */
+config.plugins.push(
+  new HtmlWebpackPlugin({
+    template: path.resolve(project.srcDir, 'index.html'),
+  })
+);
 
 /* Webpack HMR */
 if (__DEV__) {
@@ -97,6 +105,15 @@ if (__PROD__) {
         drop_console: true,
         warnings: false,
       },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module) {
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
     })
   );
 }
