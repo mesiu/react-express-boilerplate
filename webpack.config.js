@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const project = require('./project.config');
 
@@ -36,6 +37,36 @@ config.module.rules.push({
   exclude: /node_modules/,
   loader: 'babel-loader',
 });
+
+/* CSS */
+const extractTextPlugin = new ExtractTextPlugin({
+  disable: __DEV__,
+  filename: 'styles.[contenthash].css',
+  allChunks: true,
+});
+
+config.module.rules.push({
+  test: /\.css$/,
+  use: extractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1,
+          localIdentName: '[name]__[local]--[hash:base64:5]',
+          modules: true,
+          minimize: __PROD__,
+        },
+      },
+      {
+        loader: 'postcss-loader',
+      },
+    ],
+  }),
+});
+
+config.plugins.push(extractTextPlugin);
 
 /* Webpack HMR */
 if (__DEV__) {
