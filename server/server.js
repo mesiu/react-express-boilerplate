@@ -5,6 +5,7 @@ import express from 'express';
 import path from 'path';
 
 import webpackMiddleware from './middleware/webpack';
+import logger from './utils/logger';
 
 import project from '../project.config';
 
@@ -24,5 +25,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  logger.info(`Server is running on http://localhost:${port}`);
 });

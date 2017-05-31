@@ -1,11 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
-const webpackConfig = require('../../webpack.config.js');
+import webpackConfig from '../../webpack.config';
+import logger from '../utils/logger';
 
 const webpackMiddleware = (app) => {
+  logger.info('Starting Webpack middleware');
+
   const compiler = webpack(webpackConfig);
 
   app.use(webpackDevMiddleware(compiler, {
