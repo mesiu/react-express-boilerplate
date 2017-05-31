@@ -12,6 +12,8 @@ import project from '../project.config';
 const app = express();
 const port = project.port;
 
+app.disable('x-powered-by');
+
 app.use(compression());
 
 app.use(express.static(path.resolve(project.outDir)));
